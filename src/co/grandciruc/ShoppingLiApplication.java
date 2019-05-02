@@ -1,10 +1,19 @@
 package co.grandciruc;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+/**************@Author:Linmei Mills ************/
+/* What this program can do:
+ * 1. A table to display a menu of each item and its price with HashMap.
+ * 2. User can add multiple items into their chart.
+ * 3. A table to display what items in the chart with its price and quantity.
+ * 		If they alreay has the same item in the chart, increase the quantity.
+ * 4. prompt user if they want to add more items.
+ * 5. Display average price of total items in the chart.
+ * 6. Display the more and least expensive items in the chart.
+ * */
 
 public class ShoppingLiApplication{
 	public static void main(String[] args) {
@@ -33,8 +42,8 @@ public class ShoppingLiApplication{
 		} while (userContinue.equalsIgnoreCase("y"));
 		
 		 	System.out.println("Here's what you got: ");
-			System.out.printf("  Items\t\t Price\t\t Quantity%n");
-			System.out.printf(" =======\t=========\t==========%n");
+			System.out.printf(" Items\t Price\t  Quantity%n");
+			System.out.printf(" =========================%n");
 			getChartList(items, price, quantity); //print out the items in the chart
 			averagePrice(price,quantity);
 			getMaxPrice(price, items);
@@ -94,7 +103,7 @@ public class ShoppingLiApplication{
 			for(int j = 0; j < price.size(); j++) {
 				for(int k = 0; k < quantity.size(); k++) {
 					
-					System.out.printf("    %-5s  \t  $%-4.2f\t\t    %d%n",items.get(i), price.get(i), quantity.get(i));
+					System.out.printf(" %-5s\t $%.2f\t   %d%n",items.get(i), price.get(i), quantity.get(i));
 					break;
 				}
 				break;
@@ -110,7 +119,7 @@ public class ShoppingLiApplication{
 			if (ItemsAndPrices.containsKey(input)) {
 				isValid = true;
 			} else {
-				System.out.println("Input must match the right format: ");
+				System.out.println("Sorry, we do not have this item. ");
 
 			}
 		} while (!isValid);
@@ -126,15 +135,15 @@ public class ShoppingLiApplication{
 	}
 	
 	public static HashMap<String, Double> displayMenu(HashMap<String, Double> lists) {
-		lists.put("H", 6.99);// I named every item super simple just for the convinience of testing and grading. ;)
-		lists.put("I", 11.49);
-		lists.put("G", 1.99);
-		lists.put("K", 5.99);
-		lists.put("A", 4.79);
-		lists.put("B", 0.99);
-		lists.put("C", 3.99);
-		lists.put("D", 1.99);
-		lists.put("E", 14.79);
+		lists.put("HH", 6.99);// I named every item super simple just for the convinience of testing and grading. ;)
+		lists.put("II", 11.49);
+		lists.put("GG", 1.99);
+		lists.put("KK", 5.99);
+		lists.put("AA", 4.79);
+		lists.put("BB", 0.99);
+		lists.put("CC", 3.99);
+		lists.put("DD", 1.99);
+		lists.put("EE", 14.79);
 
 		System.out.printf(" Items\t Price%n");
 		System.out.printf(" ===== \t========%n");
