@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+/**************Studnet: Linmei Mills************/
 public class ShoppingLiApplication{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
