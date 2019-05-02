@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-/**************Studnet: Linmei Mills************/
+
 public class ShoppingLiApplication{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to World's Unique Market!");
+		
 		HashMap<String, Double> lists = new HashMap<String, Double>();
 		ArrayList<String> items = new ArrayList<String>();
 		ArrayList<Double> price= new ArrayList<Double>();
-//		Collections.sort(price);
 		ArrayList<Integer> quantity = new ArrayList<Integer>();
 		
 		String userContinue = "y";
@@ -23,9 +23,10 @@ public class ShoppingLiApplication{
 			if(items.contains(pickedItem)) {
 				quantity.set(items.indexOf(pickedItem), quantity.get(items.indexOf(pickedItem)) + 1);
 			}
-			else items.add(pickedItem);			
-			price.add(lists.get(pickedItem));
-			quantity.add(1);
+			else {items.add(pickedItem);			
+				price.add(lists.get(pickedItem));
+				quantity.add(1);
+			}
 			System.out.println("Would you like to order anything else? (y/n): ");
 			userContinue = sc.next();
 			sc.nextLine();
@@ -35,7 +36,7 @@ public class ShoppingLiApplication{
 			System.out.printf("  Items\t\t Price\t\t Quantity%n");
 			System.out.printf(" =======\t=========\t==========%n");
 			getChartList(items, price, quantity); //print out the items in the chart
-			averagePrice(price);
+			averagePrice(price,quantity);
 			getMaxPrice(price, items);
 			getMinPrice(price, items);
 			
@@ -72,14 +73,20 @@ public class ShoppingLiApplication{
 	}
 		
 		
-	public static void averagePrice(ArrayList<Double> price) {
+	public static void averagePrice(ArrayList<Double> price, ArrayList<Integer> quantity) {
 		double average = 0;
-		double sum = 0;
+		double sumP = 0;
+		Integer sumQ = 0;
 		for(Double num : price) { 
-			sum += num;
-			average = sum/(price.size());
+			sumP += num * quantity.get(price.indexOf(num)) ;
+			//System.out.printf("%.2f is sumP %n",sumP);//test
 		}
-		System.out.printf("You total is %.2f and avaerage price per item is %.2f. %n", sum, average);
+		//System.out.println(quantity); //test
+		for(Integer qty : quantity) {
+			sumQ += qty;
+			}
+		average = sumP/sumQ;
+		System.out.printf("You total is %.2f and avaerage price per item is %.2f. %n", sumP, average);
 	}
 	
 	public static void getChartList(ArrayList<String> items, ArrayList<Double> price, ArrayList<Integer> quantity) {
@@ -119,7 +126,7 @@ public class ShoppingLiApplication{
 	}
 	
 	public static HashMap<String, Double> displayMenu(HashMap<String, Double> lists) {
-		lists.put("H", 6.99);
+		lists.put("H", 6.99);// I named every item super simple just for the convinience of testing and grading. ;)
 		lists.put("I", 11.49);
 		lists.put("G", 1.99);
 		lists.put("K", 5.99);
